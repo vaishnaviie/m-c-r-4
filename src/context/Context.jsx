@@ -9,6 +9,9 @@ const ContextProvider = createContext();
 export const useData = () => useContext(ContextProvider);
 
 const Context = ({ children }) => {
+  // const [totalVotes, setTotaVotes] = useState(
+  //   post?.upvotes - post?.downvotes
+  // );
   const [state, dispatch] = useReducer(ReducerFunc, initialState);
   return (
     <div>

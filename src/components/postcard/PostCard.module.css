@@ -1,0 +1,5 @@
+.mainContainer {
+  border: 3px dotted red;
+  display: flex;
+  gap: 15px;
+}
