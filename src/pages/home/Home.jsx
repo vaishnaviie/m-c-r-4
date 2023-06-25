@@ -4,7 +4,7 @@ import { forumData } from "../../data/Data";
 import PostCard from "../../components/postcard/PostCard";
 
 const Home = () => {
-  const [selectedTag, setSelectedTag] = useState(" select");
+  const [selectedTag, setSelectedTag] = useState("latest posts");
   //   console.log(selectedTag);
 
   const filteredData =
@@ -14,7 +14,7 @@ const Home = () => {
       ? forumData?.posts?.sort(
           (a, b) => new Date(a.createdAt) - new Date(b.createdAt)
         )
-      : forumData?.posts?.sort((a, b) => a.upvotes - b.upvotes);
+      : forumData?.posts?.sort((b, a) => a.upvotes - b.upvotes);
 
   console.log(filteredData);
 
@@ -50,7 +50,7 @@ const Home = () => {
           value={selectedTag}
           onChange={(e) => setSelectedTag(e.target.value)}
         >
-          <option value="select">select</option>
+          {/* <option value="select">select</option> */}
           <option value="latest posts">latest posts</option>
           <option value="most upvoted posts">most upvoted posts</option>
         </select>

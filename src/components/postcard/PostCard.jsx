@@ -17,6 +17,18 @@ const PostCard = ({ post, boolean }) => {
 
   const Bcolor = btnToggle ? "blue" : "black";
 
+  const upVoteHander = (ID) => {
+    const singlePost = forumData?.posts?.find((post) => post.postId === ID);
+    singlePost.upvotes = singlePost.upvotes + 1;
+    setTotaVotes(singlePost.upvotes - singlePost.downvotes);
+  };
+
+  const downVoteHander = (ID) => {
+    const singlePost = forumData?.posts?.find((post) => post.postId === ID);
+    singlePost.downvotes = singlePost.downvotes + 1;
+    setTotaVotes(singlePost.upvotes - singlePost.downvotes);
+  };
+
   return (
     <>
       {boolean && (
@@ -34,7 +46,6 @@ const PostCard = ({ post, boolean }) => {
         </Link>
       )}
 
-      {/* <div className={styles.outerContainer}> */}
       <div
         style={{ border: boolean && "2px solid blue" }}
         className={styles.mainContainer}
@@ -48,12 +59,13 @@ const PostCard = ({ post, boolean }) => {
         >
           <AiFillCaretUp
             style={{ fontSize: "3rem", color: "blue" }}
-            onClick={() => setTotaVotes(totalVotes + 1)}
+            onClick={() => upVoteHander(post?.postId)}
           />
-          {totalVotes}
+          {/* {totalVotes} */}
+          {post.upvotes - post.downvotes}
           <AiFillCaretDown
             style={{ fontSize: "3rem", color: "gray" }}
-            onClick={() => setTotaVotes(totalVotes - 1)}
+            onClick={() => downVoteHander(post?.postId)}
           />
         </div>
         <div>
