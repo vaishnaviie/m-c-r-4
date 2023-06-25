@@ -1,7 +1,6 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import { forumData } from "../data/Data";
-import SinglePostCard from "./singlePostCard/SinglePostCard";
 import PostCard from "./postcard/PostCard";
 
 const PostCardDetails = () => {

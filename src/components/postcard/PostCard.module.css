@@ -1,5 +1,17 @@
-.mainContainer {
+.outerContainer {
   border: 3px dotted red;
+  width: 40%;
+  margin: auto;
+}
+
+.mainContainer {
+  background-color: #ffffff;
+  /* border: 3px dotted red; */
   display: flex;
   gap: 15px;
+  width: 50%;
+  margin: auto;
+  margin-top: 1.2rem;
+  margin-bottom: 1.2rem;
+  padding: 1rem;
 }

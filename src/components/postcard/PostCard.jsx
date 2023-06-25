@@ -18,56 +18,132 @@ const PostCard = ({ post, boolean }) => {
   const Bcolor = btnToggle ? "blue" : "black";
 
   return (
-    <div className={styles.mainContainer}>
-      <div style={{ display: "flex", flexDirection: "column" }}>
-        <AiFillCaretUp onClick={() => setTotaVotes(totalVotes + 1)} />
-        {totalVotes}
-        <AiFillCaretDown onClick={() => setTotaVotes(totalVotes - 1)} />
-      </div>
-      <div>
-        <p>posted by {post.username}</p>
-        <h3>{post.post}</h3>
-        {post?.tags?.map((tag) => (
-          <span style={{ marginRight: "15px" }}>{tag}</span>
-        ))}
-        <p>{post.postDescription}</p>
-        <hr />
-        <div style={{ display: "flex", justifyContent: "space-between" }}>
-          {/* <BiComment> */}{" "}
-          <Link to={`/singlepost/${post.postId}`}>
-            <BiComment />{" "}
-          </Link>{" "}
-          {/* </BiComment> */}
-          <BiShareAlt />
-          <BsBookmarkFill
-            style={{ color: Bcolor }}
-            onClick={() => setBtnToggle(!btnToggle)}
+    <>
+      {boolean && (
+        <Link
+          to="/"
+          style={{
+            textDecoration: "none",
+            fontWeight: "bold",
+            fontSize: "1.2rem",
+            color: "blue",
+          }}
+        >
+          {" "}
+          Post
+        </Link>
+      )}
+
+      {/* <div className={styles.outerContainer}> */}
+      <div
+        style={{ border: boolean && "2px solid blue" }}
+        className={styles.mainContainer}
+      >
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            textAlign: "center",
+          }}
+        >
+          <AiFillCaretUp
+            style={{ fontSize: "3rem", color: "blue" }}
+            onClick={() => setTotaVotes(totalVotes + 1)}
+          />
+          {totalVotes}
+          <AiFillCaretDown
+            style={{ fontSize: "3rem", color: "gray" }}
+            onClick={() => setTotaVotes(totalVotes - 1)}
           />
         </div>
         <div>
-          {boolean && (
-            <div>
-              {post?.comments?.map((e) => (
-                <li style={{ listStyle: "none" }}>
-                  <p>
-                    <b>{e?.username}</b>@{e?.username}
-                  </p>
-                  <p>Replying to {forumData?.username}</p>
-                  <p>
-                    <b>{e?.comment}</b>
-                  </p>
-                </li>
-              ))}
-              <div style={{ display: "flex", justifyContent: "space-between" }}>
-                <AiOutlineHeart />
-                <BiComment />
-                <BiShareAlt />
+          <div style={{ display: "flex", marginTop: "0.5rem" }}>
+            <img
+              src={post.picUrl}
+              //   style={{ marginTop: "2rem" }}
+              alt="pic"
+              height="30rem"
+              width="30rem"
+            />
+            <span style={{ marginLeft: "0.5rem" }}>
+              {" "}
+              <span style={{ color: "gray" }}>posted by</span>
+              <span style={{ color: "blue" }}>@{post.username}</span>
+            </span>
+          </div>
+          <h3>{post.post}</h3>
+          {post?.tags?.map((tag) => (
+            <span
+              style={{
+                marginRight: "15px",
+                //   border: "1px solid blue",
+                backgroundColor: "lightblue",
+                padding: "0.2rem",
+                borderRadius: "10px",
+                fontSize: "12px",
+                color: "blue",
+              }}
+            >
+              {tag}
+            </span>
+          ))}
+          <p>{post.postDescription}</p>
+          <hr />
+          <div style={{ display: "flex", justifyContent: "space-between" }}>
+            <Link to={`/singlepost/${post.postId}`}>
+              <BiComment style={{ fontSize: "1.2rem", color: "black" }} />{" "}
+            </Link>{" "}
+            <BiShareAlt style={{ fontSize: "1.2rem" }} />
+            <BsBookmarkFill
+              style={{ color: Bcolor, fontSize: "1.2rem" }}
+              onClick={() => setBtnToggle(!btnToggle)}
+            />
+          </div>
+          <div>
+            {boolean && (
+              <div>
+                {post?.comments?.map((e) => (
+                  <div
+                    style={{ display: "flex", marginTop: "1rem", gap: "1rem" }}
+                  >
+                    <img
+                      src={e.picUrl}
+                      alt="pic"
+                      height="35rem"
+                      width="35rem"
+                    />
+                    <span>
+                      <span>
+                        <b>{e?.username}</b>@{e?.username}
+                      </span>
+
+                      <p style={{ color: "gray" }}>
+                        Replying to
+                        <span style={{ color: "blue" }}>
+                          @{forumData?.username}
+                        </span>
+                      </p>
+                      <span>
+                        <b>{e?.comment}</b>
+                      </span>
+                    </span>
+                  </div>
+                ))}
+
+                <div
+                  style={{ display: "flex", justifyContent: "space-between" }}
+                >
+                  <AiOutlineHeart style={{ fontSize: "1.2rem" }} />
+                  <BiComment style={{ fontSize: "1.2rem" }} />
+                  <BiShareAlt style={{ fontSize: "1.2rem" }} />
+                </div>
               </div>
-            </div>
-          )}
+            )}
+          </div>
         </div>
       </div>
-    </div>
+      {/* </div> */}
+    </>
   );
 };
 

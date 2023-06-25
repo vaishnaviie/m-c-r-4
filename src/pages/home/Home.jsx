@@ -18,21 +18,26 @@ const Home = () => {
 
   console.log(filteredData);
 
-  //   const abc = "2023-06-24T12:01:00Z";
-  //   const v = new Date(abc);
-  //   console.log(v);
-
   return (
     <div className={styles.mainContainer}>
       <div className={styles.sidebar}>
-        <h3>Home</h3>
-        <h3>Explore</h3>
-        <h3>Bookmark</h3>
-        <h3>Profile</h3>
+        <div style={{ width: "7rem" }}>
+          <h3>Home</h3>
+          <h3>Explore</h3>
+          <h3>Bookmark</h3>
+          <h3>Profile</h3>
+        </div>
+        <div style={{ display: "flex", gap: "0.5rem" }}>
+          <img src={forumData.picUrl} alt="pic" height="35rem" width="35rem" />
+          <div>
+            <span style={{ fontWeight: "bold" }}>{forumData.name}</span> <br />
+            <span style={{ color: "gray" }}>@{forumData.username}</span>
+          </div>
+        </div>
       </div>
 
       <div className={styles.mainPage}>
-        <h3>Latest Posts</h3>
+        <h3 style={{ textAlign: "center" }}>Latest Posts</h3>
         {filteredData?.map((data) => (
           <PostCard post={data} />
         ))}
